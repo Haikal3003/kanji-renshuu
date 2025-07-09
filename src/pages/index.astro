@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import Header from '@/components/common/Header';
+import KanjiList from "@/components/kanji/KanjiList"
+
+
+---
+
+<Layout >
+	<Header client:load/>
+	<KanjiList client:load/>
+</Layout>

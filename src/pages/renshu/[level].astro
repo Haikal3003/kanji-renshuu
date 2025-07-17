@@ -1,4 +1,5 @@
 ---
+import KanjiQuiz from "@/components/latihan/KanjiQuiz";
 import Layout from "@/layouts/Layout.astro";
 
 const { level } = Astro.params;
@@ -13,6 +14,5 @@ export async function getStaticPaths() {
 ---
 
 <Layout>
-	<h1 class="text-3xl font-bold text-center mt-10">Tes Level {level}</h1>
-	<p class="text-center mt-4">Ini adalah halaman quiz untuk level {level}.</p>
+	<KanjiQuiz level={level}/>
 </Layout>

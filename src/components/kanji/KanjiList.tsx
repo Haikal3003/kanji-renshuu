@@ -1,35 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import KanjiCard from './KanjiCard';
-import { kanji_grade_n2, kanji_grade_n3, kanji_grade_n4, kanji_grade_n5 } from '../../data/kanji';
+import { getKanjisByLevel } from '@/hooks/getKanjisByLevel';
 import type { KanjiLevel } from '@/types/kanji';
-
-const kanjiByLevel: Record<KanjiLevel, any[]> = {
-  N1: [],
-  N2: kanji_grade_n2,
-  N3: kanji_grade_n3,
-  N4: kanji_grade_n4,
-  N5: kanji_grade_n5,
-};
 
 const levels: KanjiLevel[] = ['N5', 'N4', 'N3', 'N2', 'N1'];
 
 export default function KanjiList() {
   const [level, setLevel] = useState<KanjiLevel>('N5');
+  const [kanjiList, setKanjiList] = useState<string[]>([]);
 
-  const kanjiList = kanjiByLevel[level] || [];
+  useEffect(() => {
+    const fetchKanji = async () => {
+      const levelNumber = level.replace('N', '');
+      const kanjis = await getKanjisByLevel(levelNumber);
+      setKanjiList(kanjis || []);
+    };
 
-  const getUniqueKanji = (kanjiArray: any[]) => {
-    const seen = new Set<string>();
-    return kanjiArray.filter((item) => {
-      if (seen.has(item.kanji)) {
-        return false;
-      }
-      seen.add(item.kanji);
-      return true;
-    });
-  };
-
-  const uniqueKanjiList = getUniqueKanji(kanjiList);
+    fetchKanji();
+  }, [level]);
 
   return (
     <div className="z-50">
@@ -41,8 +29,8 @@ export default function KanjiList() {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2">
-        {uniqueKanjiList.length > 0 ? uniqueKanjiList.map((kanji, index) => <KanjiCard key={index} kanji={kanji} />) : <p className="col-span-4 text-center text-gray-500">Data untuk level {level} belum tersedia.</p>}
+      <div className="grid grid-cols-6 gap-4 max-lg:grid-cols-4 max-md:grid-cols-3">
+        {kanjiList.length > 0 ? kanjiList.map((kanji, index) => <KanjiCard key={index} kanji={kanji} />) : <p className="col-span-4 text-center text-gray-500">Data untuk level {level} belum tersedia.</p>}
       </div>
     </div>
   );

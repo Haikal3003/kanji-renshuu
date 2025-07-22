@@ -1,0 +1,26 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import KanjiDetails from "@/components/kanji/KanjiDetails";
+import { getKanjisByLevel } from "@/hooks/getKanjisByLevel";
+
+const { params } = Astro;
+const kanji = params.kanji;
+
+export async function getStaticPaths() {
+  const levels = ["5", "4", "3", "2", "1"];
+  const allKanji: string[] = [];
+
+  for (const level of levels) {
+    const kanjiList = await getKanjisByLevel(level)
+    allKanji.push(...kanjiList);
+  }
+
+  return allKanji.map(k => ({
+    params: { kanji: k }
+  }));
+}
+---
+
+<Layout>
+  <KanjiDetails kanji={kanji} />
+</Layout>

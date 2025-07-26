@@ -16,7 +16,7 @@ export default function KanjiCard({ kanji }: KanjiCardProps) {
     <div className="relative" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onMouseMove={handleMouseMove}>
       {hovered && (
         <div
-          className="fixed z-50 flex items-center justify-center rounded-full bg-white text-black text-xs font-semibold pointer-events-none"
+          className="fixed z-50 flex items-center justify-center rounded-full bg-red-500 text-yellow-400 font-bold text-xs pointer-events-none "
           style={{
             top: cursorPos.y - 20,
             left: cursorPos.x - 20,
@@ -29,7 +29,7 @@ export default function KanjiCard({ kanji }: KanjiCardProps) {
         </div>
       )}
 
-      <div onClick={() => (window.location.href = `/details/kanji/${kanji}`)} className="rounded-xl p-8 mb-4 duration-300 bg-white cursor-none  hover:bg-black">
+      <div onClick={() => (window.location.href = `/details/kanji/${kanji}`)} className="rounded-xl p-8 mb-4 duration-300 bg-white cursor-none  hover:bg-dark">
         <div className="flex flex-col justify-center items-center text-center gap-4">
           <div className="text-6xl max-md:text-5xl font-bold text-yellow-500 mb-2 ">{kanji}</div>
         </div>

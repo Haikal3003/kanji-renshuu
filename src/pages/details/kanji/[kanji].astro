@@ -11,7 +11,7 @@ export async function getStaticPaths() {
   const allKanji: string[] = [];
 
   for (const level of levels) {
-    const kanjiList = await getKanjisByLevel(level)
+    const kanjiList = await getKanjisByLevel(level);
     allKanji.push(...kanjiList);
   }
 
@@ -20,7 +20,9 @@ export async function getStaticPaths() {
   }));
 }
 ---
-
 <Layout>
-  <KanjiDetails kanji={kanji} />
+  <div class="z-50">
+
+    <KanjiDetails client:load kanji={kanji} />
+  </div>
 </Layout>

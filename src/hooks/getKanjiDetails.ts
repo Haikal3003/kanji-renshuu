@@ -13,7 +13,7 @@ export async function getKanjiDetails(kanji: string) {
 
     return res.data;
   } catch (error) {
-    console.error(error);
-    return [];
+    console.error('Error fetching kanji details:', error);
+    return null;
   }
 }

@@ -45,16 +45,16 @@ export default function KanjiList() {
   };
 
   return (
-    <div className="z-50 flex flex-col ">
-      <div className="mb-12 flex items-center justify-center flex-wrap gap-4">
+    <div className="z-50">
+      <div className="mb-12 flex items-center justify-center gap-4 max-md:gap-2">
         {levels.map((lvl) => (
-          <button key={lvl} className={`px-4 py-2 rounded-md border-2 border-yellow-400 cursor-pointer  ${level === lvl ? 'bg-red-500 text-yellow-400 font-bold' : 'bg-white text-gray-700'}`} onClick={() => setLevel(lvl)}>
+          <button key={lvl} className={`px-4 py-2 rounded-md border-2 border-yellow-400 cursor-pointer max-md:text-sm  ${level === lvl ? 'bg-red-500 text-yellow-400 font-bold' : 'bg-white text-gray-700'}`} onClick={() => setLevel(lvl)}>
             {lvl}
           </button>
         ))}
       </div>
 
-      <div className="grid grid-cols-6 gap-4 max-md:grid-cols-3 grid-center">
+      <div className="grid grid-cols-6 gap-4 max-md:grid-cols-3 max-lg:grid-cols-4 ">
         {currentKanjis.length > 0 ? currentKanjis.map((kanji, index) => <KanjiCard key={index} kanji={kanji} />) : <p className="col-span-6 flex justify-center items-center ">Data untuk level {level} belum tersedia.</p>}
       </div>
 

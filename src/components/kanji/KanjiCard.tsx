@@ -29,8 +29,8 @@ export default function KanjiCard({ kanji }: KanjiCardProps) {
         </div>
       )}
 
-      <div onClick={() => (window.location.href = `/details/kanji/${kanji}`)} className="rounded-xl p-8 mb-4 duration-300 bg-white cursor-none  hover:bg-dark">
-        <div className="flex flex-col justify-center items-center text-center gap-4">
+      <div onClick={() => (window.location.href = `/details/kanji/${kanji}`)} className="rounded-xl p-8 duration-300 bg-white cursor-none  hover:bg-dark">
+        <div className=" text-center gap-4">
           <div className="text-6xl max-md:text-5xl font-bold text-yellow-500 mb-2 ">{kanji}</div>
         </div>
       </div>

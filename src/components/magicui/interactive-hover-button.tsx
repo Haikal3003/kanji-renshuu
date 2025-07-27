@@ -18,14 +18,19 @@ export const InteractiveHoverButton = React.forwardRef<HTMLButtonElement | HTMLA
     className
   );
 
+  const textClass = 'inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0 text-sm sm:text-base md:text-lg';
+
+  const hoverTextClass =
+    'absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 opacity-0 transition-all duration-300 group-hover:-translate-x-6 group-hover:opacity-100 text-primary text-sm sm:text-base md:text-lg';
+
   if (href) {
     return (
       <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} className={sharedClassName} {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}>
         <div className="flex items-center gap-2">
-          <div className="h-2 w-2 rounded-full bg-yellow-400 transition-all duration-300 group-hover:scale-[100.8]"></div>
-          <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">{children}</span>
+          <div className="h-2 w-2 rounded-full bg-yellow-400 transition-all duration-300 group-hover:scale-[100.8]" />
+          <span className={textClass}>{children}</span>
         </div>
-        <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary opacity-0 transition-all duration-300 group-hover:-translate-x-6 group-hover:opacity-100">
+        <div className={hoverTextClass}>
           <span>{children}</span>
         </div>
       </a>
@@ -35,10 +40,10 @@ export const InteractiveHoverButton = React.forwardRef<HTMLButtonElement | HTMLA
   return (
     <button ref={ref as React.Ref<HTMLButtonElement>} className={sharedClassName} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
       <div className="flex items-center gap-2">
-        <div className="h-2 w-2 rounded-full bg-yellow-400 transition-all duration-300 group-hover:scale-[100.8]"></div>
-        <span className="inline-block transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">{children}</span>
+        <div className="h-2 w-2 rounded-full bg-yellow-400 transition-all duration-300 group-hover:scale-[100.8]" />
+        <span className={textClass}>{children}</span>
       </div>
-      <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-primary-foreground opacity-0 transition-all duration-300 group-hover:-translate-x-6 group-hover:opacity-100">
+      <div className={hoverTextClass + ' text-primary-foreground'}>
         <span>{children}</span>
       </div>
     </button>

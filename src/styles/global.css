@@ -120,7 +120,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-yellow-100 text-foreground px-20;
+    @apply bg-yellow-100 text-foreground px-32 max-md:px-[30px];
   }
 
   input {

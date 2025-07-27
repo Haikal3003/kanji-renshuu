@@ -34,7 +34,7 @@ function KanjiQuizList() {
   };
 
   return (
-    <div className="p-8 z-50">
+    <div className="p-8 relative z-50">
       <h1 className="text-3xl font-bold mb-8 text-center">Pilih level kanji</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {levels.map((item) => (

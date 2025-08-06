@@ -1,26 +1,36 @@
 import { getKanjiDetails } from '@/hooks/getKanjiDetails';
 import type { KanjiDetailsProps } from '@/types/kanji';
 import React, { useEffect, useState } from 'react';
+import { translateToIndonesia } from '@/utils/translate-meanings';
 
 export default function KanjiDetails({ kanji }: { kanji: string }) {
   const [kanjiDetails, setKanjiDetails] = useState<KanjiDetailsProps | null>(null);
+  const [translatedMeaning, setTranslatedMeaning] = useState<string>('');
+  const [translatedExamples, setTranslatedExamples] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchKanjiDetails = async () => {
+    const fetchAndTranslate = async () => {
       setLoading(true);
       try {
         const details = await getKanjiDetails(kanji);
-        console.log('Fetched Kanji Details:', details);
         setKanjiDetails(details);
+
+        const mainMeaning = details.kanji.meaning.english || '-';
+        const meaningID = await translateToIndonesia(mainMeaning);
+        setTranslatedMeaning(meaningID || mainMeaning);
+
+        const examplesEnglish = details.examples.map((e: { meaning: { english: string } }) => e.meaning.english);
+        const examplesID = await Promise.all(examplesEnglish.map(translateToIndonesia));
+        setTranslatedExamples(examplesID);
       } catch (error) {
-        console.error('Error:', error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchKanjiDetails();
+    fetchAndTranslate();
   }, [kanji]);
 
   if (loading) return <p className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">Loading...</p>;
@@ -44,7 +54,7 @@ export default function KanjiDetails({ kanji }: { kanji: string }) {
 
           <div id="meanings" className="max-md:text-sm">
             <h2 className="font-bold">Arti</h2>
-            <p>{kanjiDetails?.kanji.meaning.english || '-'}</p>
+            <p>{translatedMeaning || kanjiDetails?.kanji.meaning.english || '-'}</p>
           </div>
         </div>
       </div>
@@ -58,7 +68,7 @@ export default function KanjiDetails({ kanji }: { kanji: string }) {
               <span className="mt-2 h-2 w-2 bg-red-600 rounded-full flex-shrink-0"></span>
               <div className="max-md:text-sm">
                 <h1 className="font-normal">{example.japanese}</h1>
-                <p className="text-sm text-gray-700">{example.meaning.english}</p>
+                <p className="text-sm text-gray-700">{translatedExamples[idx] || example.meaning.english}</p>
               </div>
             </li>
           ))}

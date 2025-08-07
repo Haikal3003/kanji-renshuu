@@ -65,7 +65,7 @@ export default function KanjiList() {
               <>
                 <button
                   onClick={() => setCurrentPage(1)}
-                  className={`w-12 h-12 max-md:w-8 max-md:h-8 rounded-md text-sm max-md:text-xs cursor-pointer border-2 border-yellow-400 ${currentPage === 1 ? 'bg-dark text-yellow-400 font-bold' : 'bg-white text-black'}`}
+                  className={`w-12 h-12 max-md:w-10 max-md:h-10 rounded-md text-sm  cursor-pointer border-2 border-yellow-400 ${currentPage === 1 ? 'bg-dark text-yellow-400 font-bold' : 'bg-white text-black'}`}
                 >
                   1
                 </button>
@@ -77,7 +77,7 @@ export default function KanjiList() {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`w-12 h-12 max-md:w-8 max-md:h-8 rounded-md text-sm max-md:text-xs cursor-pointer border-2 border-yellow-400 ${currentPage === page ? 'bg-red-500 text-yellow-400 font-bold' : 'bg-white text-black'}`}
+                className={`w-12 h-12 max-md:w-10 max-md:h-10 rounded-md text-sm cursor-pointer border-2 border-yellow-400 ${currentPage === page ? 'bg-red-500 text-yellow-400 font-bold' : 'bg-white text-black'}`}
               >
                 {page}
               </button>
@@ -88,7 +88,7 @@ export default function KanjiList() {
                 {getPageNumbers().slice(-1)[0] < totalPages - 1 && <span className="px-2">...</span>}
                 <button
                   onClick={() => setCurrentPage(totalPages)}
-                  className={`w-12 h-12 max-md:w-8 max-md:h-8 rounded-md text-sm max-md:text-xs cursor-pointer border-2 border-yellow-400 ${currentPage === totalPages ? 'bg-dark text-yellow-400 font-bold' : 'bg-white text-black'}`}
+                  className={`w-12 h-12 max-md:w-10 max-md:h-10 rounded-md text-sm  cursor-pointer border-2 border-yellow-400 ${currentPage === totalPages ? 'bg-dark text-yellow-400 font-bold' : 'bg-white text-black'}`}
                 >
                   {totalPages}
                 </button>

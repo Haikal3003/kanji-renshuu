@@ -82,7 +82,7 @@ export default function KanjiDetails({ kanji }: { kanji: string }) {
           {kanjiDetails?.kanji.strokes.images.map((image, idx) => (
             <li key={idx} className="relative ">
               <span className="absolute top-2 left-2  text-red-600 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">{idx + 1}</span>
-              <img src={image} alt={`stroke-${idx}`} className="w-[150px] h-[150px] max-md:w-[100px] max-md:h-[100px] bg-yellow-400  rounded-md p-4" />
+              <img src={image} alt={`stroke-${idx}`} className="w-[140px] h-[140px] max-md:w-[90px] max-md:h-[90px] bg-yellow-400  rounded-md p-4" />
             </li>
           ))}
         </ul>

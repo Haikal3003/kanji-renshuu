@@ -16,7 +16,7 @@ export default function KanjiCard({ kanji }: KanjiCardProps) {
     <div className="relative" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onMouseMove={handleMouseMove}>
       {hovered && (
         <div
-          className="fixed z-50 flex items-center justify-center rounded-full bg-red-500 text-yellow-400 font-bold text-xs pointer-events-none "
+          className="fixed z-50 flex items-center justify-center rounded-full bg-red-500 text-yellow-400 font-bold text-xs pointer-events-none max-md:hidden"
           style={{
             top: cursorPos.y - 20,
             left: cursorPos.x - 20,

@@ -34,9 +34,9 @@ function KanjiQuizList() {
   };
 
   return (
-    <div className="p-8 relative z-50">
+    <div className="py-8 relative z-50">
       <h1 className="text-3xl font-bold mb-8 text-center">Pilih level kanji</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 max-md:grid-cols-2 gap-6 max-md:gap-4">
         {levels.map((item) => (
           <div key={item.level} className="cursor-pointer transform hover:scale-105 transition-transform" onClick={() => handleLevelClick(item.level)}>
             <img src={item.image.src} alt={`Level ${item.level}`} className="rounded-2xl" />
